@@ -66,3 +66,139 @@ xxx.tetta = 6.28;
 xxx.z = 9;
 
 //console.log(xxx);
+
+let videoSegments = ['video1.mp4','video2.mp4','video3.mp4','video5.mp4']
+
+let result = videoSegments.join('|')
+
+console.log(":::::::::::::::::::::::::::::::::::::::::::::::::::::")
+console.log(result)
+
+
+let version = '1.6.1'
+
+console.log(`....................${version.slice(1)}.........................`)
+
+const ta = {kpArray: []};
+ //ta.kpArray = [];
+let room = 9
+let phonenumber = '72201157'
+
+ta.kpArray.push({room, phonenumber})
+
+room = 2
+phonenumber = '75211759'
+
+ta.kpArray.push({room, phonenumber})
+
+room = 1
+phonenumber = '75211760'
+
+ta.kpArray.push({room, phonenumber})
+
+
+console.log(" . . . .. .  . . . . . . . . . .. ")
+console.log(ta.kpArray)
+
+
+let kv = ta.kpArray.find((item) => item.phonenumber == "72201157")
+
+
+console.log(`----{{ ${JSON.stringify(kv.room)} }}-----`)
+
+
+
+ta.kpArray = ta.kpArray.filter((item) => item.room != 1)
+
+console.log(`..............${JSON.stringify(ta.kpArray)}................`)
+
+let arrayTest = [];
+arrayTest.push("https://dev.bandwidth.com/messaging/methods/messages/createMessage.html")
+
+console.log("...")
+console.log(`.............${JSON.stringify(arrayTest)}................`)
+
+
+console.log(".")
+console.log("..")
+console.log("...")
+let mediaUrl = "https://messaging.bandwidth.com/api/v2/users/u-ddpqk3sn6qtqm4edjiz7oqi/media/617d4041-8cd0-42cb-9b99-10a2e4340454/0/IMG_0638.jpg"
+let version2 = "https://messaging.bandwidth.com/api/v2/users/u-ddpqk3sn6qtqm4edjiz7oqi/media/47ddc0f5-0bc8-4cf6-bdf7-142db88774a9/0/IMG_0589.jpg"
+let mediaID = mediaUrl.split("/")
+                      .splice(-3)
+                      .join("/");
+
+console.log(`............${mediaID}.............`)
+
+let v2ID = version2.split("/media/")
+
+console.log(".")
+console.log("..")
+console.log("...")
+console.log(`.......${v2ID[1]}...........`)
+
+  let name = v2ID[1].split('/');
+
+
+
+console.log(encodeURI(version2))
+
+console.log(encodeURIComponent(name[name.length-1]))
+
+console.log(__dirname)
+
+
+let   headers= {
+  'content-type': `algo;multipart/form-data`,
+  'content-length': "filesize",
+  'accept' : '*/*',
+  "Authorization": "Bearer f0ef37ff7e04bbcc4b8400fb912233828d25d6dbb5a9c7a80dd11ffac715f74c"
+}
+
+delete headers['content-type']
+console.log(headers)
+
+let dm = "720x1280\n"
+dm = dm.split("x");
+
+let obj = {
+  h: parseInt(dm[1]),
+  w: parseInt(dm[0])
+}
+
+let sms = ["mdiaz","jartiga"]
+
+//sms = sms.map((userId) => `@${userId}:vinix.im`);
+
+console.log(typeof sms)
+let sms_string = JSON.stringify(sms)
+console.log(typeof sms_string)
+
+console.log(typeof JSON.parse(sms_string))
+
+
+let columns = ['id',
+                'domain',
+                'room_id',
+                'from_number',
+                'to_number',
+                'invited_users',
+                'kazoo_id',
+                'created']
+
+//let col = columns.join(",")                
+columns.shift();
+console.log(columns);
+
+let data = {
+  domain: "vinix.im",// for now vinix, but eventually will be reading from kazoo API
+  room_id: "!MvbCXesJCSGoFBLbcJ:vinix.im",
+  from_number: "+13053315999",
+  to_number: "+13053315999",
+  invited_users: "['mdiaz','jartiga']",// the array should be convert to text with JSON.stringify
+  kazoo_id: "901823918239810923809"// AccountId getting from kazooApi.getAccountId
+}
+
+data.created = new Date().toJSON();
+
+console.log(data)

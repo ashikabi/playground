@@ -1,0 +1,22 @@
+const mysql = require('mysql');
+
+const connection = mysql.createConnection({
+	host: "127.0.0.1",
+	user: "root",
+	password: "!nfinityWar2018",
+	database: "bridgedb"
+});
+
+const getConnection = () =>{
+	connection.connect((e)=>{
+		if(!!error) 
+			console.log(error);
+		else 
+			console.log('Connected..!');
+		
+	});
+	return connection;
+};
+
+
+module.exports = {getConnection};
