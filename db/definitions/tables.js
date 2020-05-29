@@ -6,8 +6,7 @@ const store = {
             'from_number',
             'to_number',
             'invited_users',
-            'kazoo_id',
-            'created'],
+            'kazoo_id'],
   where: `domain = 'vinix.im' `
 };
 
@@ -16,8 +15,7 @@ const logs = {
   columns: ['id',
             'sms_store_id',
             'description',
-            'bandwidth_status',
-            'created']
+            'bandwidth_status']
 };
 
 module.exports = {store, logs}

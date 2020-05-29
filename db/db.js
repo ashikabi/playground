@@ -8,13 +8,7 @@ const connection = mysql.createConnection({
 });
 
 const getConnection = () =>{
-	connection.connect((e)=>{
-		if(!!error) 
-			console.log(error);
-		else 
-			console.log('Connected..!');
-		
-	});
+	connection.connect();
 	return connection;
 };
 

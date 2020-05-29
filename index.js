@@ -183,22 +183,36 @@ let columns = ['id',
                 'from_number',
                 'to_number',
                 'invited_users',
-                'kazoo_id',
-                'created']
+                'kazoo_id']
 
 //let col = columns.join(",")                
 columns.shift();
 console.log(columns);
 
 let data = {
-  domain: "vinix.im",// for now vinix, but eventually will be reading from kazoo API
-  room_id: "!MvbCXesJCSGoFBLbcJ:vinix.im",
   from_number: "+13053315999",
   to_number: "+13053315999",
   invited_users: "['mdiaz','jartiga']",// the array should be convert to text with JSON.stringify
-  kazoo_id: "901823918239810923809"// AccountId getting from kazooApi.getAccountId
+  kazoo_id: "901823918239810923809",// AccountId getting from kazooApi.getAccountId
+  domain: "vinix.im",// for now vinix, but eventually will be reading from kazoo API
+  room_id: "!MvbCXesJCSGoFBLbcJ:vinix.im",
 }
 
-data.created = new Date().toJSON();
+//data.created = new Date().toJSON();
 
-console.log(data)
+
+let values = columns.map((colName) => data[colName]);
+
+let valuesToInsert = "";
+values.forEach((val) => {
+  valuesToInsert += `'${val}',`
+});
+
+columns = columns.join(',');
+columns += ',created';
+
+valuesToInsert += `'${new Date().toJSON()}'`;
+
+console.log(`columns : ${columns}`)
+console.log(`values : ${valuesToInsert}`)
+
