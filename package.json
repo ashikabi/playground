@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "config-yml": "^0.10.3",
+    "js-yaml": "^3.14.0",
     "mysql": "^2.18.1",
     "redis": "^3.0.2"
   }

@@ -2,8 +2,9 @@ const handler = require('./dbTesting');
 const redis = require('redis');
 const redisClient = redis.createClient({host : 'localhost', port : 6379});
 
-redisClient.on('ready',function() {
+redisClient.on('ready',async ()=> {
   console.log("Redis is ready");
+  await initLocalStorage();
  });
  
  redisClient.on('error',function() {
@@ -32,20 +33,14 @@ redisClient.on('ready',function() {
    });
  }
 
- const initLocalStorage = () =>{
-  return new Promise((resolve, reject) => {
-    (async ()=>{
+ const initLocalStorage = async () =>{
       try{
         let result = await handler.getAllRooms();
+        console.log(`DB total rooms : ${result.length}`);
         await saveInLocalStorage("rooms",result);
-        let currentValues = await getFromLocalStorage("rooms"); 
-        resolve(currentValues);
       }catch(e){
-        console.error(`ERROR[initLocalStorage] ${JSON.stringify(e)}`)
-        reject(e);
+        console.error(`ERROR[initLocalStorage] ${e}`)
       }
-    })()
-  });
   }
 
 module.exports = {saveInLocalStorage,getFromLocalStorage,initLocalStorage}

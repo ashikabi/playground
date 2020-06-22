@@ -1,0 +1,12 @@
+bridges: [
+  {
+    domain: "vinix.im",
+    port: 8081,
+    default_phone: "+19544141212"
+  },
+  {
+    domain: "vinix-2.im",
+    port: 8082,
+    default_phone: "+19542289350"
+  }
+]

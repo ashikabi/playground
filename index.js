@@ -194,7 +194,7 @@ let data = {
   to_number: "+13053315999",
   invited_users: "['mdiaz','jartiga']",// the array should be convert to text with JSON.stringify
   kazoo_id: "901823918239810923809",// AccountId getting from kazooApi.getAccountId
-  domain: "vinix.im",// for now vinix, but eventually will be reading from kazoo API
+  //domain: "vinix.im",// for now vinix, but eventually will be reading from kazoo API
   room_id: "!MvbCXesJCSGoFBLbcJ:vinix.im",
 }
 
@@ -216,3 +216,216 @@ valuesToInsert += `'${new Date().toJSON()}'`;
 console.log(`columns : ${columns}`)
 console.log(`values : ${valuesToInsert}`)
 
+let objTest = { '+19544141212': [ 'mdiaz', 'jartiga' ] };
+
+let ket = []
+for (let [key, value] of Object.entries(objTest)) {
+  console.log(`${key}: ${value}`);
+  ket = value;
+}
+
+console.log(`::::: ${ket} ::::::`)
+
+
+
+
+let media = [
+  "https://messaging.bandwidth.com/api/v2/users/u-ddpqk3sn6qtqm4edjiz7oqi/media/c630e866-ebfa-4194-b7c4-5f21e7e22016/0/0.smil",
+  "https://messaging.bandwidth.com/api/v2/users/u-ddpqk3sn6qtqm4edjiz7oqi/media/c630e866-ebfa-4194-b7c4-5f21e7e22016/1/IMG_0559.jpg"
+];
+
+media = media.filter((url)=> {
+  let allowedMedia = ["jpg","jpeg","png","gif","pdf","mp3","mp4","m4a","wav","aac"];
+  let extension = url.split(".");
+  return allowedMedia.includes(extension[extension.length -1].toLowerCase())
+});
+
+console.log(":.:.:.:.:.:.:.:.:.:.:.:.:.:.:.:.:.:.:.:.:.:.");
+console.log(media);
+
+
+delete data.invited_users;
+
+console.log(__dirname)
+
+let phone = "@sms_13053315558:vinix.im";
+phone = `+${phone.match(/\d+/g)}`
+
+console.log(phone)
+
+let user = "@jartiga:vinix.im";
+
+user = user.split(":")
+
+console.log(user[0].substring(1,user[0].length))
+
+console.log(".........................");
+console.log(`test array : ${!!data.room_id}`)
+console.log(".........................");
+
+
+console.log(columns.includes('room_id'))
+
+
+let roomToBeCreated = "@sms_13053315558:vinix.im";
+console.log(`=========>    encodeURIComponent : ${encodeURIComponent(roomToBeCreated)}`);
+
+roomToBeCreated = roomToBeCreated.split(":")[0];
+
+
+if(roomToBeCreated.startsWith("@sms_"))
+  console.log(roomToBeCreated);
+else
+  console.log("fail.........");
+
+
+
+  let play = "Empty room (was sms_13053315558)"
+
+  console.log(`====>>>> ${play.includes("sms_")}`);
+
+  let userTest = "@sms_50372201157";
+
+  console.log(roomToBeCreated.substring(1));
+
+  console.log(sms.filter(u => u != 'mdiaz'));
+
+  let id = "!pHavKRpDhGmlXGsDXd:vinix.im"
+
+  let defaultDomain = id.split(":");
+  
+  console.log(defaultDomain[1])
+
+  if(!data.domain)
+    data.domain = "dummy"
+
+console.log(JSON.stringify(data))
+
+
+let testing = "+50372201157"
+
+testing = `#${testing}:vinix.im`
+
+console.log(encodeURIComponent("!NwOLbmpHyNpRFXutkp:vinix.im"));
+
+let userId="@sms_50372201157:vinix.im"
+let roomId="!NwOLbmpHyNpRFXutkp:vinix.im"
+userId = encodeURIComponent(userId)
+roomId = encodeURIComponent(roomId)
+let tagName="m.bridges"
+let url = `https://vinix.im/_matrix/client/r0/user/${userId}/rooms/${roomId}/tags/${tagName}`
+
+console.log(url)
+
+let currentState = {
+  events:{
+    "m.room.create":{
+                      "":{
+                          type:"m.room.create",
+                          sender:"@sms_50372201193:vinix.im",
+                          content:{
+                            room_version:"5",
+                            creator:"@sms_50372201193:vinix.im"
+                          
+                  },
+                          event_id:"$PaQgTZtC0vI4SlgcI670EOtmJpCCfqmdrx5B77fb0F8",
+                          origin_server_ts:1591972877094,
+                          unsigned:{
+                            age:356066
+                          
+                  },
+                          room_id:"!gdfhKZPQpFgLwrsDqh:vinix.im"
+                      
+                  }
+                    
+                  },
+    "m.room.topic":{
+                    "":{
+                       type:"m.room.topic",
+                       sender:"@sms_50372201193:vinix.im",
+                       content:{
+                          topic:"sms_50372201193"
+                       
+              },
+                       event_id:"$jmd8B1ACl2c8-UCw1cNY8YZgK_rZIYSN0Kuhj_FQzfk",
+                       origin_server_ts:1591972877354,
+                       unsigned:{
+                          age:355806
+                       
+              },
+                       room_id:"!gdfhKZPQpFgLwrsDqh:vinix.im"
+                    
+              }
+                 
+              }
+  }
+}
+
+console.log("............................................");
+console.log("............................................");
+console.log(currentState.events["m.room.create"]);
+
+let [createObj] = Object.values(currentState.events["m.room.create"]);
+let [topicObj] = (currentState.events.hasOwnProperty("m.room.topic")? Object.values(currentState.events["m.room.topic"]) : []);
+
+console.log(createObj.content.creator.substring(1).startsWith("sms_"));
+if(topicObj)
+  console.log(topicObj.content.topic.startsWith("sms_"));
+else
+  console.log("There are not topic at all")
+
+
+
+
+
+
+
+let testUser = "@sms_13053315558:vinix.im"
+console.log(testUser.match(/\d+/g).toString())
+
+let topic = testUser.split(":")
+console.log(topic[0].substring(1));
+
+
+const store = {
+  table: "sms_store",
+  columns: ['id',
+            'domain',
+            'room_id',
+            'from_number',
+            'to_number',
+            'invited_users',
+            'kazoo_id'],
+  where: `domain = 'vinix.im' AND deleted!=1 `
+};
+
+let cols = store.columns.filter(col => col!="id");
+console.log(cols);
+
+let imageurl = "mxc://vinix.im/LuvgaduaraKdlbVmJIOIvVpG"
+console.log(JSON.stringify(imageurl))
+
+imageurl = imageurl.split("/")
+console.log(imageurl[imageurl.length-1]);
+
+
+let phoneNumberx = "1234567890";
+console.log('. * . . * . . * . . * . . * . ');
+console.log(phoneNumberx.match(/\d+/g).toString().length == 10);
+console.log(!phoneNumberx.includes('@'));
+
+const currentUser = "@jartiga:vinix.im"
+const domain = currentUser.split(":")[1];
+
+console.log(domain);
+
+
+let sms2 = [{"default_number":"+19544141212","phone":"+19544141212","sms_users":["mdiaz","jartiga","santhony"]},
+          {"phone":"+19542289350","sms_users":["jartiga-2"]}]
+
+let [users] = sms2.filter((item) => item.phone == "+19544141212");
+console.log("====================================================================");
+console.log(users.sms_users)
+
+
+console.log(encodeURIComponent("Riot-1.6.4"))

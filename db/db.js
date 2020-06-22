@@ -1,15 +1,22 @@
 const mysql = require('mysql');
 
-const connection = mysql.createConnection({
+const pool = mysql.createPool({
+	//connectionLimit : 10,
 	host: "127.0.0.1",
 	user: "root",
-	password: "!nfinityWar2018",
+	password: "qwerty123",
 	database: "bridgedb"
 });
 
 const getConnection = () =>{
-	connection.connect();
-	return connection;
+	console.log("getConnection...");
+	return new Promise((resolve, reject) => {
+		pool.getConnection(function(err, connection) {
+			if (err) 
+				reject(err); 
+			resolve(connection);
+		});
+	});
 };
 
 
